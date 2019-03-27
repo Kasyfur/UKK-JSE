@@ -29,49 +29,44 @@
 		
 		<!-- CSS PopUp -->
 		<style>
-			.modalContainer{
-				position: fixed;
-				width: 100%;
-				height: 100%;
-				z-index: 1000;
-				display: none;
-				background-color: rgba(0,0,0,0.4);
-			}
-			.menu{
-				position: fixed;
-				width: 90%;
-				height: 80%;
-				margin: 5%;
-				z-index: 1001;
-				background-color: white;
-			}
-			a.button-login {
-				-webkit-appearance: button;
-				-moz-appearance: button;
-				text-decoration: none;
-				padding: 0px 20px;
-				background-color: #FFD626;
+			.dropbtn {
+				background-color: #001232;
+				color: white;
+				padding: 16px;
+				font-size: 16px;
 				border: none;
-				color: #004;
-				font-size: 14px;
+				cursor: pointer;
 			}
-			/* 
-			Deskripsi : Sebuah formulir untuk pemesanan suatu barang. Bila menu ‘Kirim’ diklik, 
-			maka akan mengeluarkan alert ‘Terima Kasih sudah berbelanja!’ 
-			copyright (c) 2014 oleh : Wildan S. Nahar | wildansnahar@gmail.com 
-			Terima kasih dan semoga bermanfaat. 
-			Kunjungi terus blog : wildansnahar.wordpress.com dan Salam Developer ! 
-			*/ 
-			.h1 { font-family: Ubuntu; } 
-			.p1 { font-family: Droid Sans; margin-left: 400px; } 
-			.ul { font-family: droid Sans; list-style: none; } 
-			.p3 {margin-left: 350px; } 
-			.p0 { margin-left: 400px; } 
-			.li { margin-left: 350px; } 
-			.label { cursor: pointer; display: block; }
 
-			.textarea { width: 250px; height: 120px; } 
-			.p4 {margin-left: 500px; font-family: ubuntu ; font-size: 20px; }
+			.dropdown {
+				position: relative;
+				display: inline-block;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			}
+
+			.dropdown-content a {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+			}
+
+			.dropdown-content a:hover {background-color: #f1f1f1}
+
+			.dropdown:hover .dropdown-content {
+				display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+				background-color: #3e8e41;
+			}
 		</style>
 
 		<!-- PopUp -->
@@ -85,63 +80,7 @@
 
     </head>
 	<body>
-		<!-- modal pesan -->
-		<div id="modalPesan" class="modalContainer">
-			<div id='menu' class="menu">
-			<div class="container">
-				<h3 style="text-align:center;">Pesan</h3>
-				<div style="width:100%; height:2px; background-color:grey;"></div>
-				<br/>
-				<br/>
-				<p4> <strong> PESAN DISINI </p4> </strong> <br> 
-<p1> Silakan isi form di bawah ini untuk melakukan pemesanan </p1>
-
-<form action=”” method=”get”> 
-<ul> 
-<li> 
-<label for=”nama”> Nama Pemesan : </label> 
-<input id=”nama” name=”namamu” /> 
-</li> 
-<br> 
-<li> 
-<label for=”alamat”> Alamat Lengkap : (Tulis selengkap-lengkapnya) </label> 
-<textarea id=”alamat” name=”alamat”></textarea> 
-</li> 
-<li> 
-<label for=”nomorhp”> Nomor Handphone : </label> 
-<input id=”nomorhp” name=”nomorhpmu” /> 
-</li>
-
-<li> 
-<label for=”e-mail”> Alamat E-mail : </label> 
-<input id=”e-mail” name=”e-mail” /> 
-</li>
-<p3> PESANAN </p3> 
-<li> 
-<label for=”pesanan”> Pilih Salah Satu Pesanan : </label>
-<input type="checkbox" name='coba' value='coba'/><label for="coba">AC</label>
-<input type="checkbox" name='coba' value='coba'/><label for="coba"></label>
-</li>
-<li> 
-<label for=”ukuran”> Pilih Ukuran : </label> 
-<input type=”checkbox” /> S 
-<input type=”checkbox” /> M 
-<input type=”checkbox” /> L 
-<input type=”checkbox” /> XL 
-</li>
-<li> 
-<label for=”jumlah”> Jumlah : </label> 
-<input id=”jumlah” name=”jumlah” /> </br>
-<input type="submit" value='Kirim!' name='Kirim' onclick="alert ('Pesanan Anda Telah Terkirim !');"/>
-</li>
-<br>
-
-</ul> 
-</form>	
-			</div>
-		</div>
-	</div>
-		<!-- /modal pesan -->
+		
 		<!-- Header -->
 		<header id="header">
 
@@ -812,12 +751,146 @@
 				<div class="row">
 
 					<!-- CTA Content -->
-					<div class="col-md-9">
-						<h3>Untuk Pemesanan Bisa Klik tombol Di Samping</h3>
+					<div style="margin-bottom: 5px;" class="form-group radio_buttons required service_ac_request_question1">
+						<label class="radio_buttons required"><abbr title="required">*</abbr> Keluhan atau Masalah pada AC Anda?</label>
+						<input type="hidden" name="service_ac_request[question1]" value="">
+						<span class="radio"><label for="service_ac_request_question1_ac_tidak_dingin">
+							<input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC tidak dingin" name="service_ac_request[question1]" id="service_ac_request_question1_ac_tidak_dingin">AC tidak dingin</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_berisik"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC berisik" name="service_ac_request[question1]" id="service_ac_request_question1_ac_berisik">AC berisik</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC bocor" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">AC bocor</label></span>
+							<span class="radio"><label for="service_ac_request_question1_lainnya"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Lainnya" name="service_ac_request[question1]" id="service_ac_request_question1_lainnya">Lainnya</label></span>
+							<span class="radio"><label for="service_ac_request_question1_tidak_ada"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Tidak ada" name="service_ac_request[question1]" id="service_ac_request_question1_tidak_ada">Tidak ada</label></span>
 					</div>
-					<div class="col-md-3">	
-						<button class="main-button" onclick="bukaModal()">Pesan</button>
+					<div style="margin-bottom: 5px;" class="form-group radio_buttons required service_ac_request_question1">
+						<label class="radio_buttons required"><abbr title="required">*</abbr> Layanan Yang Anda Butuhkan?</label>
+						<input type="hidden" name="service_ac_request[question1]" value="">
+						<span class="radio"><label for="service_ac_request_question1_ac_tidak_dingin">
+							<input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC tidak dingin" name="service_ac_request[question1]" id="service_ac_request_question1_ac_tidak_dingin">Cuci AC</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_berisik"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Perbaikan AC" name="service_ac_request[question1]" id="service_ac_request_question1_ac_berisik">Perbaikan AC</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Tambah/isi freon" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">Tambah/isi freon</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Bongkar pasang AC" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">Bongkar pasang AC</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Bongkar AC" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">Bongkar AC</label></span>
+							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Pasang AC" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">Pasang AC</label></span>
+							<span class="radio"><label for="service_ac_request_question1_lainnya"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Lainnya" name="service_ac_request[question1]" id="service_ac_request_question1_lainnya">Lainnya</label></span>
 					</div>
+					<div class="form-group check_boxes required service_ac_request_question3">
+						<label class="check_boxes required"><abbr title="required">*</abbr> Jenis AC yang Anda miliki?</label>
+						<input type="hidden" name="service_ac_request[question3][]" value=""><span class="checkbox"><label for="service_ac_request_question3_ac_split"><input class="check_boxes required" required="required" aria-required="true" type="checkbox" value="AC Split" name="service_ac_request[question3][]" id="service_ac_request_question3_ac_split">AC Split</label></span>
+							<span class="checkbox"><label for="service_ac_request_question3_ac_central"><input class="check_boxes required" required="required" aria-required="true" type="checkbox" value="AC Central" name="service_ac_request[question3][]" id="service_ac_request_question3_ac_central">AC Central</label></span>
+							<span class="checkbox"><label for="service_ac_request_question3_ac_window"><input class="check_boxes required" required="required" aria-required="true" type="checkbox" value="AC Window" name="service_ac_request[question3][]" id="service_ac_request_question3_ac_window">AC Window</label></span>
+							<span class="checkbox"><label for="service_ac_request_question3_lainnya"><input class="check_boxes required" required="required" aria-required="true" type="checkbox" value="Lainnya" name="service_ac_request[question3][]" id="service_ac_request_question3_lainnya">Lainnya</label></span>
+							<span class="checkbox"><label for="service_ac_request_question3_saya_tidak_tahu"><input class="check_boxes required" required="required" aria-required="true" type="checkbox" value="Saya tidak tahu" name="service_ac_request[question3][]" id="service_ac_request_question3_saya_tidak_tahu">Saya tidak tahu</label></span>
+					</div>
+					<div style="margin-bottom: 5px;" class="form-group check_boxes optional service_ac_request_question4">
+						<label class="check_boxes optional">Berapa Horsepower (PK) AC Anda?</label>
+							<input type="hidden" name="service_ac_request[question4][]" value="">
+								<span class="checkbox"><label for="service_ac_request_question4_12_pk"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="1/2 PK" name="service_ac_request[question4][]" id="service_ac_request_question4_12_pk">1/2 PK</label></span>
+								<span class="checkbox"><label for="service_ac_request_question4_34_pk"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="3/4 PK" name="service_ac_request[question4][]" id="service_ac_request_question4_34_pk">3/4 PK</label></span>
+								<span class="checkbox"><label for="service_ac_request_question4_1_pk"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="1 PK" name="service_ac_request[question4][]" id="service_ac_request_question4_1_pk">1 PK</label></span>
+								<span class="checkbox"><label for="service_ac_request_question4_15_pk"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="1.5 PK" name="service_ac_request[question4][]" id="service_ac_request_question4_15_pk">1.5 PK</label></span>
+								<span class="checkbox"><label for="service_ac_request_question4_2_pk"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="2 pk" name="service_ac_request[question4][]" id="service_ac_request_question4_2_pk">2 pk</label></span>
+								<span class="checkbox"><label for="service_ac_request_question4_lainnya"><input onclick="conditionalRadioCheckQ4();" class="check_boxes optional" type="checkbox" value="Lainnya" name="service_ac_request[question4][]" id="service_ac_request_question4_lainnya">Lainnya</label></span>
+					</div>
+					<div style="margin-bottom: 5px;" class="form-group check_boxes optional service_ac_request_question5">
+						<label class="check_boxes optional">Merek AC Anda?</label>
+						<input type="hidden" name="service_ac_request[question5][]" value="">
+							<span class="checkbox"><label for="service_ac_request_question5_lg"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="LG" name="service_ac_request[question5][]" id="service_ac_request_question5_lg">LG</label></span>
+							<span class="checkbox"><label for="service_ac_request_question5_daikin"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="Daikin" name="service_ac_request[question5][]" id="service_ac_request_question5_daikin">Daikin</label></span>
+							<span class="checkbox"><label for="service_ac_request_question5_sharp"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="Sharp" name="service_ac_request[question5][]" id="service_ac_request_question5_sharp">Sharp</label></span>
+							<span class="checkbox"><label for="service_ac_request_question5_fujitsu"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="Fujitsu" name="service_ac_request[question5][]" id="service_ac_request_question5_fujitsu">Fujitsu</label></span>
+							<span class="checkbox"><label for="service_ac_request_question5_panasonic"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="Panasonic" name="service_ac_request[question5][]" id="service_ac_request_question5_panasonic">Panasonic</label></span>
+							<span class="checkbox"><label for="service_ac_request_question5_lainnya"><input onclick="conditionalRadioCheckQ5();" class="check_boxes optional" type="checkbox" value="Lainnya" name="service_ac_request[question5][]" id="service_ac_request_question5_lainnya">Lainnya</label></span>
+					</div>
+					<div class="form-group integer required service_ac_request_question6">
+						<label class="control-label integer required" for="service_ac_request_question6">
+							<abbr title="required">*</abbr> Berapa unit AC yang perlu dikerjakan?</label>
+							<div>
+								<input class="form-control numeric integer required" onkeyup="executeMe()" required="required" aria-required="true" type="number" step="1" name="service_ac_request[question6]" id="service_ac_request_question6">
+							</div>
+					</div>
+					<div class="form-group radio_buttons required service_ac_request_question7">
+						<label class="radio_buttons required">
+							<abbr title="required">*</abbr> Apakah penyedia jasa perlu membawa tangga?</label>
+							<input type="hidden" name="service_ac_request[question7]" value="">
+							<span class="radio"><label for="service_ac_request_question7_ya"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Ya" name="service_ac_request[question7]" id="service_ac_request_question7_ya">Ya</label></span>
+							<span class="radio"><label for="service_ac_request_question7_tidak"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Tidak" name="service_ac_request[question7]" id="service_ac_request_question7_tidak">Tidak</label></span>
+					</div>
+					<div class="form-group radio_buttons required service_ac_request_question8">
+						<label class="radio_buttons required">
+							<abbr title="required">*</abbr> Apakah jenis properti anda?</label>
+							<input type="hidden" name="service_ac_request[question8]" value=""><span class="radio"><label for="service_ac_request_question8_rumah"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Rumah" name="service_ac_request[question8]" id="service_ac_request_question8_rumah">Rumah</label></span>
+								<span class="radio"><label for="service_ac_request_question8_apartment"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Apartment" name="service_ac_request[question8]" id="service_ac_request_question8_apartment">Apartment</label></span>
+								<span class="radio"><label for="service_ac_request_question8_kantor"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Kantor" name="service_ac_request[question8]" id="service_ac_request_question8_kantor">Kantor</label></span>
+								<span class="radio"><label for="service_ac_request_question8_ruko"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Ruko" name="service_ac_request[question8]" id="service_ac_request_question8_ruko">Ruko</label></span>
+								<span class="radio"><label for="service_ac_request_question8_lainnya"><input class="radio_buttons required" required="required" aria-required="true" type="radio" value="Lainnya" name="service_ac_request[question8]" id="service_ac_request_question8_lainnya">Lainnya</label></span>
+					</div>
+					<div class="form-group string required readonly service_ac_request_question9">
+						<label class="control-label string required" for="datepicker">
+							<abbr title="required">*</abbr> Kapan Anda membutuhkan layanan?</label>
+							<div><input class="form-control string required readonly datepicker date-cursor" id="datepicker" readonly="readonly" required="required" aria-required="true" type="text" name="service_ac_request[question9]"></div>
+					</div>
+					<div class="form-group select required service_ac_request_question10">
+						<label class="control-label select required" for="service_ac_request_question10">
+							<abbr title="required">*</abbr> Pada pukul berapa Anda membutuhkan layanan?</label>
+							<div>
+								<select class="form-control select required range-time" required="required" aria-required="true" name="service_ac_request[question10]" id="service_ac_request_question10">
+									<option value=""></option>
+									<option value="06:00 - 09:00">06:00 - 09:00</option>
+									<option value="09:00 - 12:00">09:00 - 12:00</option>
+									<option value="12:00 - 15:00">12:00 - 15:00</option>
+									<option value="15:00 - 18:00">15:00 - 18:00</option>
+									<option value="18:00 - 21:00">18:00 - 21:00</option>
+									<option value="21:00 - 00:00">21:00 - 00:00</option>
+								</select>
+							</div>
+					</div>
+					<div class="form-group text optional service_ac_request_question11">
+						<label class="control-label text optional" for="service_ac_request_question11">Informasi tambahan</label>
+						<div>
+							<textarea class="form-control text optional" rows="4" name="service_ac_request[question11]" id="service_ac_request_question11"></textarea>
+							<p class="help-block">Jika Anda menjawab ‘lainnya’ sebagai jawaban pada pertanyaan-pertanyaan sebelumnya, harap menjelaskan dengan lengkap di sini. Semakin lengkap informasi yang Anda berikan, semakin akurat penawaran harga yang Anda dapatkan</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="service_ac_request_file">Upload gambar untuk membantu kami memahami keinginan Anda</label>
+						<input data-upload-url="/attachments/ajax_upload?attachable_type=ServiceAcRequest" data-param-name="attachment[file]" data-image-limit="5" data-img-position="" multiple="multiple" class="file optional ajaxFileUpload" accept="image/*" type="file" name="service_ac_request[file][]" id="service_ac_request_file">
+							<span class="attachmentWarning" style="display: none"></span>
+								<div id="js-please-wait" style="display: none"></div>
+									<ul class="list-inline attachedImages" style="margin-top:15px;"></ul>
+										<script type="text/javascript">
+										$('.ajaxFileUpload').bind('change', function() {
+											var size = this.files[0].size/1024/1024;
+											if (size > 10) {
+											alert("File terlalu besar, maksimal upload 10MB, silahkan coba file yang lain");
+											this.value = "";
+											$(".attachmentWarning").show();
+											$(".attachmentWarning").text('Silahkan coba File yang lain maksimal upload 10MB!');
+											}
+										});
+										</script>
+					</div>
+					<legend>Kontak Anda</legend>
+					<div class="form-group string required service_ac_request_quote_request_name">
+						<label class="control-label string required" for="service_ac_request_quote_request_attributes_name">
+							<abbr title="required">*</abbr> Name</label>
+							<div>
+								<input class="form-control string required js-input-name" required="required" aria-required="true" type="text" name="service_ac_request[quote_request_attributes][name]" id="service_ac_request_quote_request_attributes_name">
+							</div>
+					</div>
+					<div class="form-group email required service_ac_request_quote_request_email">
+						<label class="control-label email required" for="service_ac_request_quote_request_attributes_email">
+							<abbr title="required">*</abbr> Email</label>
+							<div>
+								<input class="form-control string email required js-input-email" required="required" aria-required="true" type="email" name="service_ac_request[quote_request_attributes][email]" id="service_ac_request_quote_request_attributes_email">
+							</div>
+					</div>
+					<div class="form-group text required service_ac_request_quote_request_kecamatan">
+						<label class="control-label text required" for="service_ac_request_quote_request_attributes_kecamatan"><abbr title="required">*</abbr> Alamat Lengkap </label>
+						<div>
+							<textarea class="form-control text required" required="required" aria-required="true" name="service_ac_request[quote_request_attributes][kecamatan]" id="service_ac_request_quote_request_attributes_kecamatan"></textarea>
+						</div>
+					</div>
+					<!-- /modal pesan -->
 					<!-- /CTA Content -->
 
 				</div>
