@@ -754,13 +754,22 @@
 					<div style="margin-bottom: 5px;" class="form-group radio_buttons required service_ac_request_question1">
 						<label class="radio_buttons required"><abbr title="required">*</abbr> Keluhan atau Masalah pada AC Anda?</label>
 						<input type="hidden" name="service_ac_request[question1]" value="">
-						<span class="radio"><label for="service_ac_request_question1_ac_tidak_dingin">
-							<input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC tidak dingin" name="service_ac_request[question1]" id="service_ac_request_question1_ac_tidak_dingin">AC tidak dingin</label></span>
-							<span class="radio"><label for="service_ac_request_question1_ac_berisik"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC berisik" name="service_ac_request[question1]" id="service_ac_request_question1_ac_berisik">AC berisik</label></span>
-							<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC bocor" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">AC bocor</label></span>
-							<span class="radio"><label for="service_ac_request_question1_lainnya"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Lainnya" name="service_ac_request[question1]" id="service_ac_request_question1_lainnya">Lainnya</label></span>
-							<span class="radio"><label for="service_ac_request_question1_tidak_ada"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Tidak ada" name="service_ac_request[question1]" id="service_ac_request_question1_tidak_ada">Tidak ada</label></span>
+						<span class="radio">klik -><label onclick="dropdown1()" for="service_ac_request_question1_ac_tidak_dingin">()
+							<div id="dropdown1" style="display:none">
+								<input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC tidak dingin" name="service_ac_request[question1]" id="service_ac_request_question1_ac_tidak_dingin">AC tidak dingin</label></span>
+								<span class="radio"><label for="service_ac_request_question1_ac_berisik"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC berisik" name="service_ac_request[question1]" id="service_ac_request_question1_ac_berisik">AC berisik</label></span>
+								<span class="radio"><label for="service_ac_request_question1_ac_bocor"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="AC bocor" name="service_ac_request[question1]" id="service_ac_request_question1_ac_bocor">AC bocor</label></span>
+								<span class="radio"><label for="service_ac_request_question1_lainnya"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Lainnya" name="service_ac_request[question1]" id="service_ac_request_question1_lainnya">Lainnya</label></span>
+								<span class="radio"><label for="service_ac_request_question1_tidak_ada"><input onclick="conditionalRadioCheckQ1();" class="radio_buttons required" type="radio" value="Tidak ada" name="service_ac_request[question1]" id="service_ac_request_question1_tidak_ada">Tidak ada</label></span>
+							</div>
+						</span>
 					</div>
+					<script>
+						var dropdown1 = document.getElementById("dropdown1");
+						function dropdown1(){
+							dropdown1.style.display = "block";
+						}
+					</script>
 					<div style="margin-bottom: 5px;" class="form-group radio_buttons required service_ac_request_question1">
 						<label class="radio_buttons required"><abbr title="required">*</abbr> Layanan Yang Anda Butuhkan?</label>
 						<input type="hidden" name="service_ac_request[question1]" value="">
