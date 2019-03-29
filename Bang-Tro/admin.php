@@ -1,3 +1,47 @@
+<?php
+require 'assets/konek.php'
+
+$username="";
+$email="";
+$password="";
+$error=array();
+
+if (isset($_POST['register'])){
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $pass = $_POST['pass'];
+
+if (empty($username)) {echo"Username Kosong";}
+if (empty($email)) {echo"Email Kosong";}
+if (empty($pass)) {echo"Password Kosong";}
+
+$user_check = "SELECT * FROM user WHERE username='$username' OR email='$email' LIMIT 1  ";
+$run = mysqli_query($konek,$user_check);
+$user = mysqli_fetch_assoc($run);
+
+if ($user){
+  if($user['username']===$username){
+    ($error[] = "Username telah digunakan");
+  }
+  if($user['email']===$email){
+    ($error[] = "Email telah digunakan");
+  }
+  foreach($errors as $error){
+    echo $error, '<br>';
+  }
+}
+
+if (count($errors)==0)
+  $password = md5($pass);
+  $waktu = date("Y-m-d H:i:s");
+  $query = "INSERT INTO user (id, username, email, password, waktu) VALUES ('', '$username', '$email', '$password')";
+  mysqli_query($konek,$query);
+  $_SESSION['username'] = $username;
+  header('location: index.html');
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,11 +120,13 @@ div {
 
 <table>
   <tr>
+    <th>Id</th>
     <th>Username</th>
     <th>Email</th>
     <th>Password</th>
   </tr>
   <tr>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>
