@@ -1,5 +1,5 @@
 <?php
-require '../assets/konek.php';
+require 'assets/konek.php';
 
 $user = '';
 $pass = '';
@@ -34,12 +34,13 @@ if(isset($_POST['register'])){
             $query = "INSERT INTO user (id, username, email, password) VALUES ('', '$user', '$email', '$password')";
             if(mysqli_query($koneksi,$query)){
                 $_SESSION['username'] = $username;
-                echo "register berhasil"
+                echo "register berhasil";
             }else{
                 echo "register gagal";
             }
         }
     }
+}
 
 
     if(isset($_POST['login'])){
