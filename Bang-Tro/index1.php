@@ -21,7 +21,7 @@ if(isset($_POST['register'])){
     $run = mysqli_query($koneksi,$user_check);
     $user = mysqli_fetch_assoc($run);
         if ($user){
-            if($user['username']===$username){
+            if($user['username']===$user){
                 echo "Username telah diambil";
                 $error = 1;
             }
@@ -30,14 +30,17 @@ if(isset($_POST['register'])){
                 $error = 1;
             }
         }
-        if (count($error)==0){
-            $query = "INSERT INTO user (id, username, email, password) VALUES ('', '$user', '$email', '$password')";
+        if ($error == 0){
+            $query = "INSERT INTO user (id, username, email, password) VALUES ('', '$user', '$email', '$pass')";
             if(mysqli_query($koneksi,$query)){
                 $_SESSION['username'] = $username;
                 echo "register berhasil";
             }else{
                 echo "register gagal";
             }
+        }else{
+            echo "juwancok";
+            exit();
         }
     }
 }
@@ -104,26 +107,26 @@ if(isset($_POST['register'])){
                         </div>
 
                         <div id="register" class="animate form">
-                            <form  action="mysuperscript.php" autocomplete="on"> 
+                            <form method="post" autocomplete="on"> 
                                 <h1> Sign up </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                                    <input id="userRegis" name="userRegis" required="required" type="text" placeholder="mysuperusername690" />
+                                    <input id="userRegis" name="userRegis" required="required" type="text" placeholder="mysuperusername690" /><?phpvalue="$user"?>
                                 </p>
                                 <p> 
                                     <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                                    <input id="emailRegis" name="emailRegis" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+                                    <input id="emailRegis" name="emailRegis" required="required" type="email" placeholder="mysupermail@mail.com"/><?phpvalue="$email"?>
                                 </p>
                                 <p> 
                                     <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                                    <input id="passRegis" name="passRegis" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                                    <input id="passRegis" name="passRegis" required="required" type="password" placeholder="eg. X8df!90EO"/><?phpvalue="$pass"?>
                                 </p>
                                 <p> 
                                     <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
                                     <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
                                 </p>
                                 <p class="signin button"> 
-									<input type="submit" value="register"/> 
+									<input type="submit" name="register" value="register"/> 
 								</p>
                                 <p class="change_link">  
 									Already a member ?
