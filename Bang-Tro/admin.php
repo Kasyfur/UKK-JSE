@@ -1,5 +1,5 @@
 <?php
-require 'assets/konek.php'
+require 'assets/konek.php';
 
 $username="";
 $email="";
