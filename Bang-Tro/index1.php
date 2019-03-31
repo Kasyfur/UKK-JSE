@@ -33,14 +33,11 @@ if(isset($_POST['register'])){
         if ($error == 0){
             $query = "INSERT INTO user (id, username, email, password) VALUES ('', '$user', '$email', '$pass')";
             if(mysqli_query($koneksi,$query)){
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $user;
                 echo "register berhasil";
             }else{
                 echo "register gagal";
             }
-        }else{
-            echo "juwancok";
-            exit();
         }
     }
 }
