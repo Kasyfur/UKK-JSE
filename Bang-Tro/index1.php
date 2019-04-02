@@ -1,11 +1,11 @@
 <?php
+session_start();
 require 'assets/konek.php';
 
-$user = '';
-$pass = '';
-$email = '';
-
 if(isset($_POST['register'])){
+    $user = null;
+    $pass = null;
+    $email = null;
     $user = $_POST['userRegis'];
     $pass = $_POST['passRegis'];
     $email = $_POST['emailRegis'];
@@ -19,25 +19,26 @@ if(isset($_POST['register'])){
     
     $user_check = "SELECT * FROM user WHERE username='$user' OR email='$email' LIMIT 1";
     $run = mysqli_query($koneksi,$user_check);
-    $user = mysqli_fetch_assoc($run);
-        if ($user){
-            if($user['username']===$user){
+    $user_row = mysqli_fetch_assoc($run);
+        if ($user_row){
+            if($user_row['username']===$user){
                 echo "Username telah diambil";
                 $error = 1;
             }
-            if($user['email']===$email){
+            if($user_row['email']===$email){
                 echo "Email telah digunakan";
                 $error = 1;
             }
         }
         if ($error == 0){
+            if($user. $pass . $email != null){
             $query = "INSERT INTO user (id, username, email, password) VALUES ('', '$user', '$email', '$pass')";
             if(mysqli_query($koneksi,$query)){
                 $_SESSION['username'] = $user;
                 echo "register berhasil";
             }else{
                 echo "register gagal";
-            }
+            }}
         }
     }
 }
@@ -45,11 +46,36 @@ if(isset($_POST['register'])){
 
     if(isset($_POST['login'])){
         $user = $_POST['username'];
-        $pass = $_POST['pass'];
+        $pass = $_POST['password'];
 
         $loginQuery = ("SELECT * FROM user WHERE username = '$user'");
         $loginRun = mysqli_query($koneksi,$loginQuery);
     }
+
+//login//
+
+if(isset($_POST['login'])){
+    $user = $_POST['username'];
+    $pass = $_POST['pass'];
+    
+    if (empty($user)) {("Username kosong");}
+    if (empty($pass)) {("Password kosong");}
+    if (!empty($user . $pass)){
+        $pass = md5($pass);
+        $query  = ("SELECT * FROM user WHERE username='$user' AND pass='$pass' LIMIT 1");
+        $run = mysqli_query($conn, $query);
+        $rows = mysqli_fetch_assoc($run);
+        if ($rows > 0){
+            $_SESSION['uid'] = $rows["id"];
+            echo $_SESSION['uid'];
+            //header('location:home.php');
+        }else{
+            echo "username atau password salah";
+        }
+    }
+}
+//End-Login//
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
@@ -79,7 +105,7 @@ if(isset($_POST['register'])){
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="mysuperscript.php" autocomplete="on"> 
+                            <form  action="assets/ceklogin.php" method="post" autocomplete="on"> 
                                 <h1>Log in</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Your email or username </label>
@@ -98,7 +124,7 @@ if(isset($_POST['register'])){
 								</p>
                                 <p class="change_link">
 									Not a member yet ?
-									<a href="#toregister" class="to_register">Join us</a>
+									<a href="index1.php" class="to_register">Join us</a>
 								</p>
                             </form>
                         </div>

@@ -1,9 +1,6 @@
 <?php
+session_start();
 include 'assets/konek.php';
-
-$sql = ("SELECT * FROM user");
-$run = mysqli_query($koneksi,$sql);
-$ambilData = mysqli_fetch_assoc($run);
 
 ?>
 <!DOCTYPE html>
@@ -76,12 +73,12 @@ div {
 </style>
 </head>
 <body>
-<!--
+
 <div id="mySidenav" class="sidenav">
   <a href="#">Akun Pelanggan</a>
   <a href="#">Pesanan</a>
 </div>
--->
+
 <table>
   <tr>
     <th>Id</th>
@@ -89,12 +86,21 @@ div {
     <th>Email</th>
     <th>Password</th>
   </tr>
-  <tr>
-    <td><?php echo $ambilData['id']; ?></td>
-    <td><?php echo $ambilData['username']; ?></td>
-    <td><?php echo $ambilData['email']; ?></td>
-    <td><?php echo $ambilData['password']; ?></td>
-  </tr>
+  <?php
+  $sql = ("SELECT * FROM user");
+  $run = mysqli_query($koneksi,$sql);
+  if(mysqli_num_rows($run)>0){
+    while($ambilData = mysqli_fetch_assoc($run)){
+      echo'
+        <tr>
+          <td>'.$ambilData['id'].'</td>
+          <td>'.$ambilData['username'].'</td>
+          <td>'.$ambilData['email'].'</td>
+          <td>'.$ambilData['password'].'</td>
+        </tr>';
+    }
+  }
+  ?>
 </table>
 
    
